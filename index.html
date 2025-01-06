@@ -50,7 +50,15 @@ function gameLoop() {
 }
 
 // Update game state
-function update() {
+/*
+Horizontal Movement: Controls left/right motion based on key presses.
+Jumping: Handles upward motion with a one-jump-at-a-time rule.
+Gravity: Simulates falling by increasing vertical velocity over time player.dx and player.dy
+Collision Detection: Ensures the player doesn't fall through the ground and resets jumping ability when they land.
+Position Updates: Combines all changes to calculate the new position of the player every frame.
+*/
+function update() 
+{
   // Horizontal movement
   if (keys["ArrowRight"]) {
     player.dx = player.speed; // Move right
@@ -67,11 +75,11 @@ function update() {
   }
 
   // Apply gravity
-  player.dy += gravity;
+player.dy = player.dy + gravity; 
 
-  // Update player position
-  player.x += player.dx;
-  player.y += player.dy;
+// Update player position -  add the player's current velocity (dx, dy) to its current position (x, y).
+player.x = player.x + player.dx;
+player.y = player.y + player.dy;
 
   // Collision with ground
   if (player.y + player.height >= canvas.height - groundHeight) {
